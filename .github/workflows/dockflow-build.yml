@@ -1,0 +1,15 @@
+# .github/workflows/dockflow-build.yml
+name: Build
+ 
+on:
+  push:
+    branches: ['*']
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npx @dockflow-tools/cli build
+        env:
+          DOCKFLOW_SECRETS: ${{ toJSON(secrets) }}

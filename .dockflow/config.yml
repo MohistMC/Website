@@ -1,0 +1,15 @@
+project_name: "mohistmc-frontend"
+
+health_checks:
+  enabled: true                 # Enable post-deployment health checks
+  startup_delay: 15             # Wait before checking (seconds)
+  on_failure: "rollback"          # Action: "fail", "notify", "ignore" or "rollback"
+  
+  endpoints:
+    - name: "Main Application"
+      url: "http://localhost:{{ current.env.app_external_port }}"
+      remote: true
+      expected_status: 200
+      timeout: 30
+      retries: 3
+      retry_delay: 5

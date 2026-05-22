@@ -7,7 +7,7 @@ server {
     location / {
         proxy_intercept_errors on;
 
-        proxy_pass http://127.0.0.1:{{ app_external_port }}/;
+        proxy_pass http://127.0.0.1:{{ current.env.app_external_port }}/;
 
         proxy_connect_timeout 3s;
         proxy_read_timeout 5s;
@@ -33,7 +33,7 @@ server {
     }
 
     location /builds-raw {
-        alias /var/mohistmc/builds/archived/;
+        alias /mnt/mohist-archives;
         autoindex on;
         autoindex_exact_size off;
     }

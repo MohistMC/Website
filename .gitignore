@@ -36,3 +36,4 @@ next-env.d.ts
 .idea
 /package-lock.json
 /pnpm-lock.yaml
+.env.dockflow

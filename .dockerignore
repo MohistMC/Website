@@ -1,1 +1,16 @@
 node_modules
+.next
+.dockflow
+.github
+.idea
+.git
+
+*.log
+*.md
+README.md
+LICENSE
+
+.env*
+!.env.production
+
+package-lock.json
