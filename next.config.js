@@ -2,6 +2,8 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
+    // Emits a self-contained server bundle for the Docker runtime stage.
+    output: 'standalone',
 }
 
 const withNextra = require('nextra')({

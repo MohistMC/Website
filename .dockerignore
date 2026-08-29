@@ -13,4 +13,3 @@ LICENSE
 .env*
 !.env.production
 
-package-lock.json
