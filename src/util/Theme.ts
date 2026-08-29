@@ -124,7 +124,8 @@ export const customTheme: CustomFlowbiteTheme = {
         },
     },
     dropdown: {
-        arrowIcon: 'ml-1 h-4 w-4 dark:text-gray-300',
+        // self-center : le bouton Flowbite est en items-stretch, sans quoi la fleche se cale en haut.
+        arrowIcon: 'ml-1 h-4 w-4 self-center dark:text-gray-300',
         content: 'py-1 focus:outline-none',
         floating: {
             animation: 'transition-opacity',

@@ -33,6 +33,8 @@ export const { setLocale } = translatorSlice.actions
 // Other code such as selectors can use the imported `RootState` type
 export const selectTranslations = (state: AppState) => state.translator.strings
 
+export const selectLocale = (state: AppState) => state.translator.locale
+
 export const selectTranslationsByString = (
     state: AppState,
 ): Record<string, string> => state.translator.strings

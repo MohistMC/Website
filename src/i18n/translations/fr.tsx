@@ -35,6 +35,7 @@ const frTranslation: PartialLocaleState = {
         'button.sourcecode': 'Code source',
         'button.blog': 'Blog',
         'button.close': 'Fermer',
+        'button.copy': 'Copier',
         'button.contribute': 'Contribuer',
         'footer.heading.gettingstarted': 'Pour commencer',
         'footer.heading.discover': 'Découvrez-nous',
@@ -53,18 +54,46 @@ const frTranslation: PartialLocaleState = {
         'downloadSoftware.mohist.desc':
             'Téléchargez Mohist, notre logiciel de serveur Minecraft Forge implémentant les API Bukkit, Spigot.',
         'downloadSoftware.search.placeholder': 'Rechercher un build...',
+        'downloadSoftware.search.caseSensitive': 'Respecter la casse',
+        'downloadSoftware.search.wholeWord': 'Mot entier',
+        'downloadSoftware.search.regex': 'Expression régulière',
+        'downloadSoftware.search.regex.invalid':
+            'Expression régulière invalide.',
         'downloadSoftware.search.noresults': 'Aucun résultat trouvé.',
         'downloadSoftware.search.nobuilds': 'Aucun build trouvé.',
-        'downloadSoftware.search.filter.btn': 'Filtrer par',
-        'downloadSoftware.build.number': 'Numéro de build',
-        'downloadSoftware.build.name': 'Nom du build',
-        'downloadSoftware.build.md5': 'Hash MD5',
         'downloadSoftware.build.sha256': 'Hash SHA256',
         'downloadSoftware.build.date': 'Date du build',
-        'downloadSoftware.build.forgever': 'Version de Forge / NeoForge',
-        'downloadSoftware.build.neoforgever': 'Version de NeoForge',
         'downloadSoftware.seemore': 'Voir plus',
-        'downloadSoftware.see.sha256': 'Voir le SHA256',
+        'downloadSoftware.version.label': 'Version de Minecraft',
+        'downloadSoftware.latest.badge': 'Dernier build',
+        'downloadSoftware.builtAgo': 'compilé {}',
+        'downloadSoftware.byAuthor': 'par {}',
+        'downloadSoftware.history': 'Historique des builds',
+        'downloadSoftware.mohist.eol.title': "Mohist n'est plus maintenu.",
+        'downloadSoftware.mohist.eol.body':
+            'La propriété et les droits ont été cédés en janvier 2025, et les mises à jour sont suspendues. Les téléchargements restent disponibles ici, mais le cœur ne reçoit plus de correctifs. Le dépôt a été transféré vers',
+        'downloadSoftware.day.today': "Aujourd'hui",
+        'downloadSoftware.day.yesterday': 'Hier',
+        'downloadSoftware.day.ago': 'Il y a {} jours',
+        'downloadSoftware.iuse': "J'utilise ce build",
+        'downloadSoftware.iuse.selected': 'Build sélectionné',
+        'downloadSoftware.loader.bump': 'Ce build change de version de loader',
+        'downloadSoftware.compare.behind.one': '1 build de retard',
+        'downloadSoftware.compare.behind': '{} builds de retard',
+        'downloadSoftware.compare.since': 'Ce qui a changé depuis {} :',
+        'downloadSoftware.compare.uptodate': 'Vous êtes à jour',
+        'downloadSoftware.compare.uptodate.desc':
+            'Le build {} est le dernier disponible pour cette version.',
+        'downloadSoftware.compare.loaderChanged':
+            'Le loader embarqué passe de {} à {}.',
+        'downloadSoftware.compare.update': 'Télécharger le dernier build',
+        'downloadSoftware.build.id': 'Identifiant du build',
+        'downloadSoftware.build.loader': 'Loader',
+        'downloadSoftware.build.commit': 'Commit',
+        'downloadSoftware.build.viewOnGithub': 'Voir sur GitHub',
+        'downloadSoftware.page.title': 'Télécharger {} - MohistMC',
+        'downloadSoftware.youer.desc':
+            'Téléchargez Youer, notre logiciel de serveur Minecraft hybride NeoForge + Bukkit/Spigot.',
         'downloadSoftware.mohist.1.7.10.toast':
             "Mohist 1.7.10 a été interrompu, son utilisation n'est pas recommandée. Nous NE fournissons PAS de support pour Mohist 1.7.10. Vous pouvez utiliser CrucibleMC comme alternative.",
         'downloadSoftware.mohist.1.18.2.toast':
@@ -168,7 +197,12 @@ const frTranslation: PartialLocaleState = {
         'just.now': "à l'instant",
         'toast.docsNotAvailableInSelectedLocale':
             "La documentation n'est pas disponible dans la langue sélectionnée. Vous serez redirigés vers la documentation en anglais.",
-        'toast.sha256.copied': 'Le hash SHA256 a été copié dans le presse-papiers.',
+        'toast.sha256.copied':
+            'Le hash SHA256 a été copié dans le presse-papiers.',
+        'toast.commit.copied':
+            'Le hash du commit a été copié dans le presse-papiers.',
+        'toast.command.copied':
+            'La commande a été copiée dans le presse-papiers.',
     },
 }
 

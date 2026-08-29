@@ -1,150 +1,142 @@
-import { Button, Flowbite, Modal } from 'flowbite-react'
-import { Project } from '@/dto/Project'
-import Link from 'next/link'
+import { Flowbite, Modal } from 'flowbite-react'
 import { useSelector } from 'react-redux'
 import { selectTheme } from '@/features/theme/ThemeSlice'
-import ProfileImage from '@/components/ProfileImage'
 import { useAppSelector } from '@/util/redux/Hooks'
-import { selectTranslations } from '@/features/i18n/TranslatorSlice'
+import {
+    selectLocale,
+    selectTranslations,
+} from '@/features/i18n/TranslatorSlice'
 import { customTheme } from '@/util/Theme'
 import { BuildDto } from '@/dto/Build'
+import { Project } from '@/dto/Project'
+import { commitUrl, loaderLabel, shortHash } from '@/util/BuildUtil'
+import ProfileImage from '@/components/ProfileImage'
+import CopyField from '@/components/downloadSoftware/CopyField'
+import DownloadDropdown from '@/components/downloadSoftware/DownloadDropdown'
 
 interface BuildDetailsModalProps {
     build: BuildDto | undefined
     project: Project | undefined
     projectVersion: string | undefined
-    openModal: string | undefined
-    setOpenModal: (modal: string | undefined) => void
+    open: boolean
+    onClose: () => void
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+    return (
+        <div className="flex min-w-0 flex-col">
+            <dt className="text-[10.5px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                {label}
+            </dt>
+            <dd className="text-sm text-gray-900 dark:text-gray-100">
+                {value}
+            </dd>
+        </div>
+    )
 }
 
 export default function BuildDetailsModal({
     build,
     project,
     projectVersion,
-    openModal,
-    setOpenModal,
+    open,
+    onClose,
 }: BuildDetailsModalProps) {
     const mode = useSelector(selectTheme)
     const strings = useAppSelector(selectTranslations)
+    const locale = useAppSelector(selectLocale)
+
+    if (!build || !project || !projectVersion) return null
+
+    const absolute = (date: string) => new Date(date).toLocaleString(locale)
+    const loader = loaderLabel(build)
 
     return (
         <Flowbite theme={{ theme: customTheme, mode }}>
-            <Modal
-                dismissible
-                show={openModal === 'dismissible'}
-                onClose={() => setOpenModal(undefined)}
-            >
+            <Modal dismissible show={open} onClose={onClose}>
                 <Modal.Header>
-                    Build {build?.commit.hash.substring(0, 8)}
+                    <span className="font-mono">
+                        {shortHash(build.commit.hash)}
+                    </span>
                 </Modal.Header>
+
                 <Modal.Body>
-                    <div className="space-y-6">
-                        <section className={`flex flex-col`}>
-                            <h2 className="text-xl font-extrabold leading-none text-dark-25 dark:text-white mb-1">
-                                Build information
-                            </h2>
-                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                Build number / id:{' '}
-                                <span
-                                    className={`font-bold dark:text-gray-300`}
-                                >
-                                    {build?.commit.hash.substring(0, 8)}
-                                </span>
-                            </p>
-                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                SHA256 Checksum:{' '}
-                                <span
-                                    className={`font-bold dark:text-gray-300`}
-                                >
-                                    {build?.file_sha256}
-                                </span>
-                            </p>
-                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                {strings['downloadSoftware.build.date']}:{' '}
-                                <span
-                                    className={`font-bold dark:text-gray-300`}
-                                >
-                                    {new Date(
-                                        build?.build_date || 0,
-                                    ).toLocaleString()}
-                                </span>
-                            </p>
-                            {build?.loader?.forge_version && (
-                                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    Forge version:{' '}
-                                    <span
-                                        className={`font-bold dark:text-gray-300`}
-                                    >
-                                        {build?.loader.forge_version}
-                                    </span>
+                    <div className="flex flex-col gap-5">
+                        <div className="flex items-start gap-3">
+                            <ProfileImage
+                                name={build.commit.author}
+                                githubUrl={`https://github.com/${build.commit.author}`}
+                                size={10}
+                            />
+                            <div className="min-w-0">
+                                <p className="font-semibold text-gray-900 dark:text-white">
+                                    {build.commit.changelog}
                                 </p>
-                            )}
-                            {build?.loader?.neoforge_version && (
-                                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    NeoForge version:{' '}
-                                    <span
-                                        className={`font-bold dark:text-gray-300`}
-                                    >
-                                        {build?.loader.neoforge_version}
-                                    </span>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {`${build.commit.author} · ${absolute(build.commit.commit_date)}`}
                                 </p>
-                            )}
-                        </section>
-                        <section className={`flex flex-col gap-1`}>
-                            <h2 className="text-xl font-extrabold leading-none text-dark-25 dark:text-white mb-2">
-                                GitHub information
-                            </h2>
-                            <div className="flex items-center space-x-4">
-                                {build?.commit.author && (
-                                    <ProfileImage
-                                        name={build?.commit.author}
-                                        githubUrl={`https://github.com/${build?.commit.author}`}
-                                        size={14}
-                                    />
-                                )}
-                                <div className="font-medium dark:text-white">
-                                    <div>{build?.commit.author}</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                                        {new Date(
-                                            build?.commit.commit_date ?? 0,
-                                        ).toLocaleString()}
-                                    </div>
-                                    <div
-                                        className={`text-xs md:text-sm text-gray-500 dark:text-gray-400`}
-                                    >
-                                        {build?.commit.hash}
-                                    </div>
-                                </div>
                             </div>
-                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                Commit message:{' '}
-                                <span
-                                    className={`font-bold dark:text-gray-300`}
-                                >
-                                    {build?.commit.changelog}
-                                </span>
+                        </div>
+
+                        <dl className="grid grid-cols-2 gap-x-5 gap-y-3.5">
+                            <Fact
+                                label={strings['downloadSoftware.build.date']}
+                                value={absolute(build.build_date)}
+                            />
+                            <Fact
+                                label={strings['downloadSoftware.build.id']}
+                                value={`#${build.id}`}
+                            />
+                            {loader && (
+                                <Fact
+                                    label={
+                                        strings['downloadSoftware.build.loader']
+                                    }
+                                    value={loader}
+                                />
+                            )}
+                        </dl>
+
+                        <div>
+                            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                                {strings['downloadSoftware.build.commit']}
                             </p>
-                        </section>
+                            <CopyField
+                                value={build.commit.hash}
+                                copyLabel={strings['button.copy']}
+                                copiedMessage={strings['toast.commit.copied']}
+                            />
+                        </div>
+
+                        <div>
+                            <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                                {strings['downloadSoftware.build.sha256']}
+                            </p>
+                            <CopyField
+                                value={build.file_sha256}
+                                copyLabel={strings['button.copy']}
+                                copiedMessage={strings['toast.sha256.copied']}
+                            />
+                        </div>
                     </div>
                 </Modal.Body>
+
                 <Modal.Footer>
-                    <Link
-                        href={`https://api.mohistmc.com/project/${project}/${projectVersion}/builds/${build?.id}/download`}
+                    <DownloadDropdown
+                        build={build}
+                        project={project}
+                        projectVersion={projectVersion}
+                        strings={strings}
+                        label={strings['button.download']}
+                    />
+                    <a
+                        href={commitUrl(project, build.commit.hash)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-dark-300 dark:text-gray-300 dark:hover:bg-dark-200"
                     >
-                        <Button>Download</Button>
-                    </Link>
-                    <Button
-                        color="gray"
-                        onClick={() => setOpenModal(undefined)}
-                    >
-                        GitHub
-                    </Button>
-                    <Button
-                        color="gray"
-                        onClick={() => setOpenModal(undefined)}
-                    >
-                        {strings['button.close']}
-                    </Button>
+                        {strings['downloadSoftware.build.viewOnGithub']}
+                    </a>
                 </Modal.Footer>
             </Modal>
         </Flowbite>

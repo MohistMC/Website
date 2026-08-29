@@ -42,6 +42,7 @@ const enTranslation = {
         'button.sourcecode': 'Source code',
         'button.blog': 'Blog',
         'button.close': 'Close',
+        'button.copy': 'Copy',
         'button.contribute': 'Contribute',
         'button.shop': 'Shop',
         'button.subscription': 'Subscription',
@@ -68,19 +69,43 @@ const enTranslation = {
         'downloadSoftware.youer.desc':
             'Download Youer, our Minecraft hybrid NeoForge + Bukkit/Spigot server software.',
         'downloadSoftware.search.placeholder': 'Search for builds...',
+        'downloadSoftware.search.caseSensitive': 'Match case',
+        'downloadSoftware.search.wholeWord': 'Match whole word',
+        'downloadSoftware.search.regex': 'Use regular expression',
+        'downloadSoftware.search.regex.invalid': 'Invalid regular expression.',
         'downloadSoftware.search.noresults': 'No results found.',
         'downloadSoftware.search.nobuilds': 'No builds found.',
-        'downloadSoftware.search.filter.btn': 'Filter by',
         'downloadSoftware.search.exactMatch': 'Exact match',
-        'downloadSoftware.build.number': 'Build number',
-        'downloadSoftware.build.name': 'Build name',
-        'downloadSoftware.build.md5': 'MD5 Checksum',
         'downloadSoftware.build.sha256': 'SHA256 Checksum',
         'downloadSoftware.build.date': 'Built on',
-        'downloadSoftware.build.forgever': 'Forge/NeoForge version',
-        'downloadSoftware.build.neoforgever': 'NeoForge version',
         'downloadSoftware.seemore': 'See more',
-        'downloadSoftware.see.sha256': 'Reveal SHA256',
+        'downloadSoftware.version.label': 'Minecraft version',
+        'downloadSoftware.latest.badge': 'Latest build',
+        'downloadSoftware.builtAgo': 'built {}',
+        'downloadSoftware.byAuthor': 'by {}',
+        'downloadSoftware.history': 'Build history',
+        'downloadSoftware.mohist.eol.title': 'Mohist is no longer maintained.',
+        'downloadSoftware.mohist.eol.body':
+            'Ownership and copyright were sold in January 2025, and updates are paused. Downloads stay available here, but the core no longer receives fixes. The repository moved to',
+        'downloadSoftware.day.today': 'Today',
+        'downloadSoftware.day.yesterday': 'Yesterday',
+        'downloadSoftware.day.ago': '{} days ago',
+        'downloadSoftware.iuse': "I'm running this build",
+        'downloadSoftware.iuse.selected': 'Selected build',
+        'downloadSoftware.loader.bump': 'This build changes the loader version',
+        'downloadSoftware.compare.behind.one': '1 build behind',
+        'downloadSoftware.compare.behind': '{} builds behind',
+        'downloadSoftware.compare.since': 'What changed since {}:',
+        'downloadSoftware.compare.uptodate': "You're up to date",
+        'downloadSoftware.compare.uptodate.desc':
+            'Build {} is the latest one available for this version.',
+        'downloadSoftware.compare.loaderChanged':
+            'The bundled loader goes from {} to {}.',
+        'downloadSoftware.compare.update': 'Download latest build',
+        'downloadSoftware.build.id': 'Build id',
+        'downloadSoftware.build.loader': 'Loader',
+        'downloadSoftware.build.commit': 'Commit',
+        'downloadSoftware.build.viewOnGithub': 'View on GitHub',
         'downloadSoftware.mohist.1.7.10.toast':
             'Mohist 1.7.10 has been discontinued, its usage is not recommended. We DO NOT provide support for Mohist 1.7.10. Alternatively, you can use CrucibleMC.',
         'downloadSoftware.mohist.1.18.2.toast':
@@ -141,11 +166,12 @@ const enTranslation = {
         'software.youer.cards.title': 'What makes %Youer% so special?',
         'software.youer.cards.1.title': '✨ Youer Advantages',
         'software.youer.cards.1.desc':
-            'Unlock unlimited possibilities of module and plugin compatibility through Youer\'s integration with Bukkit, Spigot, and PaperAPI. Break technical barriers and easily customize your server.',
+            "Unlock unlimited possibilities of module and plugin compatibility through Youer's integration with Bukkit, Spigot, and PaperAPI. Break technical barriers and easily customize your server.",
         'software.youer.cards.2.title': '🚀 Applicable scenarios',
         'software.youer.cards.2.desc':
             'For servers that want to run both NeoForge mods and Paper plugins, allowing modders, plugin developers, and integration pack authors to seamlessly experience the advantages of both ecosystems!',
-        'software.youer.cards.3.title': '🌟 Community Support and Regular Updates',
+        'software.youer.cards.3.title':
+            '🌟 Community Support and Regular Updates',
         'software.youer.cards.3.desc':
             'Join the MohistMC community for support and regular updates! Stay up-to-date with the latest Minecraft versions and access new features and improvements.',
         'software.youer.footer.title':
@@ -156,17 +182,18 @@ const enTranslation = {
         'software.asyncyouer.page.title': 'MohistMC - AsyncYouer',
         'software.asyncyouer.title': 'AsyncYouer',
         'software.asyncyouer.subtitle':
-            'AsyncYouer is a branch of Paper that improves upon Youer\'s asynchronous API based on Moonrise. This part has significant compatibility issues, hence the branch was created to improve it.',
-        'software.asyncyouer.cards.title': 'What makes %AsyncYouer% so special?',
+            "AsyncYouer is a branch of Paper that improves upon Youer's asynchronous API based on Moonrise. This part has significant compatibility issues, hence the branch was created to improve it.",
+        'software.asyncyouer.cards.title':
+            'What makes %AsyncYouer% so special?',
         'software.asyncyouer.cards.1.title': '✨ AsyncYouer Advantages',
         'software.asyncyouer.cards.1.desc':
-            'This update improves Paper\'s asynchronous API based on Moonrise, building upon Youer. It also enhances compatibility with some plugins, such as HuskHomes and Typewriter, which use asynchronous delivery APIs.',
+            "This update improves Paper's asynchronous API based on Moonrise, building upon Youer. It also enhances compatibility with some plugins, such as HuskHomes and Typewriter, which use asynchronous delivery APIs.",
         'software.asyncyouer.cards.2.title': '🚀 Applicable Scenarios',
         'software.asyncyouer.cards.2.desc':
             'A single gameplay mode that requires servers with a large number of Paper-specific plugins, for those who dare to challenge themselves.',
         'software.asyncyouer.cards.3.title': '🌟 Asynchronous API',
         'software.asyncyouer.cards.3.desc':
-            'Implement most of Paper\'s asynchronous APIs to improve the compatibility of Paper plugins.',
+            "Implement most of Paper's asynchronous APIs to improve the compatibility of Paper plugins.",
         'software.asyncyouer.footer.title':
             'Ready to level up your Minecraft server experience?',
         'software.asyncyouer.footer.desc':
@@ -283,11 +310,12 @@ const enTranslation = {
         'subscription.items.5': 'The use of the beta product',
         'subscription.items.6': 'Technical Support & Services',
         'subscription.items.7': 'One-to-one prioritization',
-        'table.page.1': 'Showing',
-        'table.page.2': 'of',
         'toast.docsNotAvailableInSelectedLocale':
             'Documentation not available in selected locale, fallback to English.',
         'toast.sha256.copied': 'SHA256 checksum copied to clipboard.',
+        'toast.commit.copied':
+            'The commit hash has been copied to the clipboard.',
+        'toast.command.copied': 'The command has been copied to the clipboard.',
     },
 }
 
