@@ -183,8 +183,9 @@ export default function DownloadSoftware() {
                             Do NOT ask for help in Spigot, PaperMC, Forge or NeoForge
                             forums.
                         </span>{' '}
-                        They are not related to Mohist and will not help you. If
-                        you have any issue, please use our{' '}
+                        They are not related to{' '}
+                        {project === Project.Youer ? 'Youer' : 'Mohist'} and will
+                        not help you. If you have any issue, please use our{' '}
                         <a
                             href="https://discord.gg/mohistmc"
                             className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
